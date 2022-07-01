@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "statemachineSagasRabbitmqDemo.Orchestrator": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

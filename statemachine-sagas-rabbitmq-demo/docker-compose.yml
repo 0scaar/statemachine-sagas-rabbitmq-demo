@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  sagas-movefile:
+    image: ${DOCKER_REGISTRY-}sagas-movefile
+    build:
+      context: .
+      dockerfile: src/statemachineSagasRabbitmqDemo.MoveFile/Dockerfile
+    networks:
+      - sagas-network
+
+  sagas-orchestrator:
+    image: ${DOCKER_REGISTRY-}sagas-orchestrator
+    build:
+      context: .
+      dockerfile: src/statemachineSagasRabbitmqDemo.Orchestrator/Dockerfile
+    networks:
+      - sagas-network
+
+  sagas-readfile:
+    image: ${DOCKER_REGISTRY-}sagas-readfile
+    build:
+      context: .
+      dockerfile: src/statemachineSagasRabbitmqDemo.ReadFile/Dockerfile
+    networks:
+      - sagas-network
+
+  sagas-processline:
+    image: ${DOCKER_REGISTRY-}sagas-processline
+    build:
+      context: .
+      dockerfile: src/statemachineSagasRabbitmqDemo.ProcessLine/Dockerfile
+    networks:
+      - sagas-network
+
+networks:
+  sagas-network:

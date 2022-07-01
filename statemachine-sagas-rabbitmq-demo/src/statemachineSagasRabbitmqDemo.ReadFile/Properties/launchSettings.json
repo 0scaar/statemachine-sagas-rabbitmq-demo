@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "statemachineSagasRabbitmqDemo.ReadFile": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    networks:
+      - sagas-network
+
+  rabbitmq:
+    image: masstransit/rabbitmq:latest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "15692:15692"
+    healthcheck:
+      timeout: 5s
+      interval: 5s
+      retries: 10
+      test:
+        - "CMD"
+        - "rabbitmqctl"
+        - "status" 
+    networks:
+      - sagas-network
+  
+  sagas-movefile:
+    image: sagas-movefile
+    build:
+      context: .
+      dockerfile: src/statemachineSagasRabbitmqDemo.MoveFile/Dockerfile
+    environment:
+      INPUT_LOCAL_PATH: "/app/local/IN"
+    volumes:
+      - ./dockerfiles/local/IN:/app/local/IN
+    networks:
+      - sagas-network
+    depends_on:
+      - rabbitmq
+      - sagas-orchestrator
+      - postgres
+
+  sagas-orchestrator:
+    image: sagas-orchestrator
+    build:
+      context: .
+      dockerfile: src/statemachineSagasRabbitmqDemo.Orchestrator/Dockerfile
+    volumes:
+      - ./dockerfiles/local/IN:/app/local/IN
+    networks:
+      - sagas-network
+    depends_on:
+      - rabbitmq
+      - postgres
+
+  sagas-readfile:
+    image: sagas-readfile
+    build:
+      context: .
+      dockerfile: src/statemachineSagasRabbitmqDemo.ReadFile/Dockerfile
+    volumes:
+      - ./dockerfiles/local/IN:/app/local/IN
+    networks:
+      - sagas-network
+    depends_on:
+      - rabbitmq
+      - sagas-orchestrator
+      - postgres 
+
+  sagas-processline:
+    image: sagas-processline
+    build:
+      context: .
+      dockerfile: src/statemachineSagasRabbitmqDemo.ProcessLine/Dockerfile
+    volumes:
+      - ./dockerfiles/local/IN:/app/local/IN
+    networks:
+      - sagas-network
+    depends_on:
+      - rabbitmq
+      - sagas-orchestrator
+      - postgres
+
+networks:
+  sagas-network:

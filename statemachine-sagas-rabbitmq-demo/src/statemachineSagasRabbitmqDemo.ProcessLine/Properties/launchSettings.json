@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "statemachineSagasRabbitmqDemo.ProcessLine": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
