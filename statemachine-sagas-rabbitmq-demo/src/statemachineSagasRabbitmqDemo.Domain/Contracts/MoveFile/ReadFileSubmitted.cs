@@ -2,8 +2,8 @@
 {
     public class ReadFileSubmitted
     {
-        public Guid FileId { get; private set; }
-        public string File { get; private set; }
+        public Guid FileId { get; set; }
+        public string File { get; set; }
 
         public ReadFileSubmitted(Guid fileId, string file)
         {

@@ -2,6 +2,6 @@
 {
     public interface IFileRepository
     {
-        void Add(Domain.File.File file);
+        int Add(Domain.File.File file);
     }
 }

@@ -11,10 +11,10 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.4.0" />
+    <PackageReference Include="Autofac.Configuration" Version="6.0.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="MassTransit" Version="8.0.3" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.3" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
     <PackageReference Include="Serilog" Version="2.11.0" />
@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\statemachineSagasRabbitmqDemo.Application\statemachineSagasRabbitmqDemo.Application.csproj" />
-    <ProjectReference Include="..\statemachineSagasRabbitmqDemo.Domain\statemachineSagasRabbitmqDemo.Domain.csproj" />
     <ProjectReference Include="..\statemachineSagasRabbitmqDemo.Infrastructure\statemachineSagasRabbitmqDemo.Infrastructure.csproj" />
   </ItemGroup>
 

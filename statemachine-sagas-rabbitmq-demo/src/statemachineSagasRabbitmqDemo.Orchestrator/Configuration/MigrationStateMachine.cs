@@ -13,6 +13,7 @@ namespace statemachineSagasRabbitmqDemo.Orchestrator.Configuration
             InstanceState(x => x.CurrentState, LineRequested);
 
             Event(() => ReadFileSubmitted, context => context.CorrelateById(i => i.Message.FileId));
+            Event(() => LineSubmitted, context => context.CorrelateById(i => i.Message.FileId));
 
             Initially(
                 When(ReadFileSubmitted).Then(context =>

@@ -16,6 +16,11 @@
             CompanyName = companyName;
         }
 
+        public FileDetail()
+        {
+
+        }
+
         public void SetFileId(Guid fileId) => FileId = fileId;
     }
 }

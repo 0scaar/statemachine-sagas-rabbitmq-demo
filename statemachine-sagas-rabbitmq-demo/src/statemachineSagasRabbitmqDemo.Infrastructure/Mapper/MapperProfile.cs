@@ -10,6 +10,8 @@ namespace statemachineSagasRabbitmqDemo.Infrastructure.Mapper
             CreateMap<Entity.File, Domain.File.File>().ReverseMap();
             CreateMap<Entity.FileDetail, Domain.Detail.FileDetail>().ReverseMap();
             CreateMap<Entity.FileLog, Domain.Log.FileLog>().ReverseMap();
+
+            CreateMap<Domain.Detail.FileDetail, Csv.FileDetail.FileDetailItem>().ReverseMap();
         }
     }
 }

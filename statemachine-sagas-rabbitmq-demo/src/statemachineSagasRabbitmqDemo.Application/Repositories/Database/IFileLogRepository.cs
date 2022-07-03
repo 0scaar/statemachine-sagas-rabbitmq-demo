@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using statemachineSagasRabbitmqDemo.Domain.Log;
 
 namespace statemachineSagasRabbitmqDemo.Application.Repositories.Database
 {
     public interface IFileLogRepository
     {
-
+        int Add(List<FileLog> fileLog);
     }
 }

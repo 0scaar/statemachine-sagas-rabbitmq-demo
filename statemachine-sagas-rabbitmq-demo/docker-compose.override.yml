@@ -61,6 +61,8 @@ services:
 
   sagas-readfile:
     image: sagas-readfile
+    environment:
+      DEMO_CONN: "Host=postgres;Port=5432;Database=postgres;User Id=postgres;Password=postgres;"
     build:
       context: .
       dockerfile: src/statemachineSagasRabbitmqDemo.ReadFile/Dockerfile
@@ -75,6 +77,8 @@ services:
 
   sagas-processline:
     image: sagas-processline
+    environment:
+      DEMO_CONN: "Host=postgres;Port=5432;Database=postgres;User Id=postgres;Password=postgres;"
     build:
       context: .
       dockerfile: src/statemachineSagasRabbitmqDemo.ProcessLine/Dockerfile

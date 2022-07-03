@@ -1,12 +1,12 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using statemachineSagasRabbitmqDemo.MoveFile.UseCases;
 using statemachineSagasRabbitmqDemo.ReadFile.Modules;
 using statemachineSagasRabbitmqDemo.MoveFile.Modules;
+using statemachineSagasRabbitmqDemo.Orchestrator.Injection;
 
 static IHost AppStartup()
 {
@@ -19,11 +19,7 @@ static IHost AppStartup()
     var host = Host.CreateDefaultBuilder()
         .ConfigureServices((context, services) =>
         {
-            services.AddMassTransit(x => {
-                x.UsingRabbitMq((ctx, cfg) => {
-                    cfg.Host("rabbitmq", "/");
-                });
-            });
+            services.ConfigureQueue();
         })
         .UseServiceProviderFactory(new AutofacServiceProviderFactory())
         .ConfigureContainer<ContainerBuilder>(container =>
